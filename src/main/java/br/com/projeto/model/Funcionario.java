@@ -1,22 +1,22 @@
-package main.java.br.com.projeto.model;
+package br.com.projeto.model;
 
-import main.java.br.com.projeto.exception.SalarioInvalidoException;
-import main.java.br.com.projeto.exception.CodigoIdentificadorInvalido;
+import br.com.projeto.exception.SalarioInvalidoException;
+import br.com.projeto.exception.CodigoIdentificadorInvalidoException;
 
-public abstract class Funcionario {
-    private final int cod_ident;
+public abstract class Funcionario implements Identificavel{
+    private final int codigo;
     private final String nome;
     private final String cpf;
     private final double salarioBase;
 
-    protected Funcionario(int cod_ident, String nome, String cpf, double salarioBase) {
-        this.cod_ident = cod_ident;
+    protected Funcionario(int codigo, String nome, String cpf, double salarioBase) {
+        this.codigo = codigo;
         this.nome = nome;
         this.cpf = cpf;
         this.salarioBase = salarioBase;
 
-        if  (cod_ident < 0) {
-            throw new CodigoIdentificadorInvalido("Código identificador deve ser diferente de 0");
+        if  (codigo < 0) {
+            throw new CodigoIdentificadorInvalidoException("Código identificador deve ser diferente de 0");
         }
         if (salarioBase < 0) {
             throw new SalarioInvalidoException("Salario base deve ser diferente de 0");
@@ -27,8 +27,8 @@ public abstract class Funcionario {
         return nome;
     }
 
-    public int getCod_ident() {
-        return cod_ident;
+    public int getIdentificador() {
+        return codigo;
     }
 
     public String getCpf() {
@@ -38,9 +38,9 @@ public abstract class Funcionario {
     public double getSalarioBase() {
         return salarioBase;
     }
+    ;
 
-    public double calcularSalario() {
-        return 0.0;
+    public abstract double calcularRemuneracao();
     }
 
-}
+

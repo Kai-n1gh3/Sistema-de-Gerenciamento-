@@ -1,4 +1,4 @@
-package main.java.br.com.projeto.exception;
+package br.com.projeto.exception;
 
 public class SalarioInvalidoException extends RuntimeException {
     public SalarioInvalidoException(String message) {
